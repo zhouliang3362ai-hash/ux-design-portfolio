@@ -1,0 +1,36 @@
+/* Minimal visual narrative. An amber friction point becomes a reusable blue pattern. */
+(() => {
+'use strict';const host=document.querySelector('.schematic-art');if(!host)return;const svg=host.querySelector('svg'),camera=svg.querySelector('#schematic-camera');
+const R=(x,y,w,h,c='')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="7" class="${c}"/>`,C=(x,y,r,c='')=>`<circle cx="${x}" cy="${y}" r="${r}" class="${c}"/>`;
+const user=`<g class="ux-person"><g class="ux-simple-body"><circle cx="165" cy="275" r="17"/><path d="M133 331v-12a32 32 0 0 1 64 0v12"/></g><g class="ux-emotion-question"><path d="M202 253q0-8 8-8t8 7q0 5-8 9v5"/><circle cx="210" cy="274" r="1.2"/></g><g class="ux-emotion-insight"><path d="M209 245v19"/><circle cx="209" cy="272" r="1.2"/></g></g>`;
+function card(x,y,improved=false){return `<g transform="translate(${x} ${y})">${R(0,0,340,230,'ux-card')}${R(24,26,292,38,'ux-search')}${C(43,43,6)}<path d="M47 48l5 5"/>${improved?`${R(67,37,54,16,'ux-chip')}<path d="M137 44h86"/>`:'<path d="M67 44h130"/>'}<path d="M24 87h292" class="ux-faint"/>${[0,1,2].map(i=>`${R(24,106+i*33,15,15,'ux-row-icon')}<path d="M54 ${112+i*33}h${[165,120,145][i]}"/>${improved?`<path d="M54 ${122+i*33}h65" class="ux-path-detail"/>`:''}`).join('')}</g>`;}
+const pattern=`${R(-37,-29,74,58,'ux-pattern-tile')}${R(-25,-17,21,9,'ux-chip')}<path d="M4-12h22M-24 3h49M-24 15H9"/>`;
+camera.innerHTML=`${user}<g class="ux-observe">${card(385,205)}<path class="ux-behavior" d="M198 300H345V249H620V350H470V249"/><g class="ux-cursor"><path d="M0 0l3 22 6-8 11-3Z"/></g>${C(620,350,7,'ux-friction')}</g>
+<g class="ux-analysis">${[0,1,2].map(i=>`<path class="ux-trail" d="M${305+i*12} ${265+i*55}H${490+i*20}V${300+i*20}H650"/>`).join('')}<g class="ux-cluster">${C(-15,0,5,'ux-friction')}${C(0,-12,5,'ux-friction')}${C(15,0,5,'ux-friction')}</g><circle class="ux-focus-ring" cx="650" cy="320" r="39"/></g>
+<g class="ux-root-cause">${R(425,200,320,230,'ux-card')}<path d="M450 245h95m50 0h125M450 290h270M450 330h140m-140 35h200" class="ux-faint"/>${R(547,225,45,39,'ux-gap')}<path d="M569 267v50" class="ux-dashed"/>${C(569,331,7,'ux-friction')}<path d="M608 371l50 50" class="ux-magnifier"/><circle class="ux-magnifier" cx="569" cy="331" r="55"/></g>
+<g class="ux-improve">${card(385,205,true)}<path class="ux-bridge" d="M451 249h55"/>${C(620,350,7,'ux-fixed')}<path class="ux-confirm" d="M608 350l8 8 17-20"/></g>
+<g class="ux-reuse">${[0,1,2].map(i=>`<g class="ux-reuse-card" transform="translate(${330+i*190} ${230+i%2*60})">${R(-70,-45,140,185,'ux-card')}<path d="M-48 47h95m-95 22h75m-75 22h86" class="ux-faint"/><g class="ux-stamp">${pattern}</g></g>`).join('')}<path class="ux-reuse-line" d="M330 210Q520 70 710 210"/></g>
+<g class="ux-verify">${card(385,205,true)}<path class="ux-new-behavior" d="M198 300H345V249H620V350"/><path class="ux-success" d="M606 350l10 10 20-24"/></g>
+<path class="ux-feedback-route" d="M620 385V485H165V345"/><circle class="ux-feedback-dot" r="6"/>
+`;
+const names=['observe','analysis','root-cause','improve','reuse','verify'],groups=names.map(n=>camera.querySelector('.ux-'+n)),userNode=camera.querySelector('.ux-person'),behavior=camera.querySelector('.ux-behavior'),cursor=camera.querySelector('.ux-cursor'),cluster=camera.querySelector('.ux-cluster'),ring=camera.querySelector('.ux-focus-ring'),feedback=camera.querySelector('.ux-feedback-route'),packet=camera.querySelector('.ux-feedback-dot'),steps=[...host.querySelectorAll('.sch-story-steps button')],play=host.querySelector('.sch-play');
+const reduced=matchMedia('(prefers-reduced-motion: reduce)');let time=0,last=0,paused=false,visible=true;const clamp=v=>Math.max(0,Math.min(1,v)),ease=v=>{v=clamp(v);return v*v*(3-2*v);};
+function drawPath(p,u){const len=p.getTotalLength();p.style.strokeDasharray=len;p.style.strokeDashoffset=len*(1-clamp(u));}
+function render(t){const shot=Math.min(5,Math.floor(t/4)),local=t-shot*4,u=clamp(local/3.5),fade=ease(local/.45)*(1-ease((local-3.7)/.3));host.dataset.shot=String(shot+1);host.dataset.storyTime=t.toFixed(2);groups.forEach((g,i)=>{g.style.opacity=i===shot?fade:0;g.setAttribute('transform',`translate(${i===shot?(1-ease(local/.7))*12:0} 0)`);});
+const restrained=Math.sin(Math.PI*ease(u));
+ const questioning=shot===0||shot===1,insight=shot===2||shot===5;
+ userNode.dataset.pose=questioning?'question':insight?'insight':'neutral';
+ camera.querySelector('.ux-simple-body').setAttribute('transform',`rotate(${(questioning?1.4:insight?-.7:0)*restrained} 165 322)`);
+ const question=questioning?Math.sin(Math.PI*clamp((local-.7)/2.6)):0;
+ const understood=insight?Math.sin(Math.PI*clamp((local-1.0)/2.3)):0;
+ camera.querySelector('.ux-emotion-question').style.opacity=String(Math.max(0,question)*.65);
+ camera.querySelector('.ux-emotion-insight').style.opacity=String(Math.max(0,understood)*.65);
+ const p=behavior.getPointAtLength(u*behavior.getTotalLength());cursor.setAttribute('transform',`translate(${p.x} ${p.y})`);drawPath(behavior,u);cluster.setAttribute('transform',`translate(${650-120*(1-ease(u))} 320) scale(${1+.4*ease(u)})`);ring.style.opacity=ease((local-1.5)/1.2);ring.setAttribute('r',String(30+12*ease(u)));camera.querySelectorAll('.ux-trail').forEach((p,i)=>drawPath(p,(local-i*.35)/2.2));
+const root=camera.querySelector('.ux-root-cause');root.setAttribute('transform',`translate(${-40*ease(u)} ${-20*ease(u)}) scale(${1+.07*ease(u)})`);camera.querySelector('.ux-gap').style.opacity=.5+.5*Math.sin(local*2)**2;
+camera.querySelector('.ux-confirm').style.opacity=ease((local-1.5)/1);drawPath(camera.querySelector('.ux-bridge'),u*1.5);camera.querySelectorAll('.ux-stamp').forEach((p,i)=>{const v=ease((local-i*.65)/.8);p.style.opacity=v;p.setAttribute('transform',`translate(0 ${-55*(1-v)})`);});drawPath(camera.querySelector('.ux-reuse-line'),local/2.3);drawPath(camera.querySelector('.ux-new-behavior'),local/1.7);camera.querySelector('.ux-success').style.opacity=ease((local-1.5)/.5);
+const f=shot===5?ease((local-1.9)/1.6):0;feedback.style.opacity=shot===5?fade:0;packet.style.opacity=shot===5&&local>1.9?fade:0;drawPath(feedback,f);const q=feedback.getPointAtLength(f*feedback.getTotalLength());packet.setAttribute('cx',q.x);packet.setAttribute('cy',q.y);userNode.classList.toggle('ux-user-validated',shot===5&&local>3.2);steps.forEach((s,i)=>s.style.setProperty('--fill',`${clamp((t-i*4)/4)*100}%`));
+}
+function tick(now){const dt=last?Math.min(.1,(now-last)/1000):0;last=now;if(!paused&&visible&&!document.hidden&&!reduced.matches)time=(time+dt)%24;render(reduced.matches?23.4:time);requestAnimationFrame(tick);}
+function sync(){play.textContent=paused?'▷':'Ⅱ';play.setAttribute('aria-label',paused?'播放设计过程动画':'暂停设计过程动画');play.setAttribute('aria-pressed',String(paused));host.dataset.paused=String(paused);}
+steps.forEach((step,i)=>step.addEventListener('click',()=>{time=i*4+2.8;paused=true;sync();render(time);}));play.addEventListener('click',()=>{paused=!paused;sync();});host.querySelector('.sch-replay').addEventListener('click',()=>{time=0;paused=false;sync();});new IntersectionObserver(e=>{visible=e[0].isIntersecting;}).observe(host);reduced.addEventListener('change',()=>play.hidden=reduced.matches);play.hidden=reduced.matches;sync();render(0);requestAnimationFrame(tick);
+})();
