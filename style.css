@@ -10,3 +10,105 @@
 @media(min-width:681px) and (max-width:1100px){.local-clock{display:flex}.nav-actions{gap:12px}.nav-inner{gap:18px}nav{gap:22px}.local-clock time{font-size:10px}.local-clock div>span{font-size:5px}.contact-link{display:none}}
 
 .mini-table{transition:grid-template-columns 300ms var(--ease),transform 300ms var(--ease),border-color 300ms var(--ease)}
+
+/* Cover: abstract EDA routing and continuous signal propagation. */
+.hero h1{font-size:clamp(40px,4.8vw,64px);letter-spacing:-2.5px;line-height:1.5;position:relative;z-index:1;width:58%;margin-top:54px}
+.hero h1 .hero-line.quiet{color:var(--muted)}
+.signal-art{position:absolute;right:24px;top:106px;width:46%;height:350px;pointer-events:none;color:#408d87;z-index:0}
+.signal-art svg{display:block;width:100%;height:100%;overflow:visible}
+.signal-route{stroke:currentColor;stroke-width:.65;opacity:.19;stroke-linejoin:round}
+.signal-flow{stroke:currentColor;stroke-width:1.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:22 630;animation:signal-travel var(--duration) linear var(--delay) infinite;opacity:.55}
+.signal-particle{fill:#67b8ac;filter:drop-shadow(0 0 3px #56bba9)}
+.signal-dust{fill:currentColor;opacity:.23;animation:signal-shimmer 7s ease-in-out var(--delay) infinite}
+.signal-junctions{stroke:currentColor;stroke-width:.8;fill:var(--bg);opacity:.5}
+.signal-caption{display:flex;justify-content:space-between;font-size:7px;letter-spacing:1.5px;color:var(--muted);padding:0 34px;margin-top:-8px;opacity:.65}
+.hero-bottom{position:relative;z-index:1;margin-top:48px}.hero-intro{max-width:540px}
+html[data-theme=dark] .signal-art{color:#7ac6ba}html[data-theme=dark] .signal-route{opacity:.25}
+@keyframes signal-travel{to{stroke-dashoffset:-652}}
+@keyframes signal-shimmer{0%,100%{opacity:.12}50%{opacity:.48}}
+@media(max-width:900px){.hero h1{font-size:clamp(34px,4.9vw,44px);letter-spacing:-1.5px;width:64%}.signal-art{right:10px;width:43%;top:110px;height:290px}.signal-caption{font-size:5px;letter-spacing:.7px;padding:0 20px}}
+@media(max-width:680px){.hero h1{width:100%;font-size:clamp(32px,7.5vw,46px);margin-top:30px}.signal-art{position:relative;top:auto;right:auto;width:100%;height:220px;margin:12px auto 24px}.signal-art svg{max-width:380px;margin:auto}.signal-caption{max-width:380px;margin:-8px auto 0;padding:0 25px;font-size:6px}.hero-bottom{margin-top:24px}}
+@media(prefers-reduced-motion:reduce){.signal-art animateMotion{display:none}.signal-particle{display:none}.signal-flow{animation:none;stroke-dasharray:22 170;opacity:.3}}
+
+nav a[aria-current=page]{color:var(--ink);border-bottom:1px solid var(--ink)}
+.resume{padding-top:65px;padding-bottom:80px;max-width:1080px}.resume-head{display:flex;justify-content:space-between;gap:32px;padding:42px 0;border-bottom:1px solid var(--line)}.resume-head h1{font-size:52px;letter-spacing:-2px;margin:0}.resume-role{font-size:20px;margin-top:9px}.resume-role span{font-size:12px;color:var(--muted);margin-left:18px}.resume-contact{display:flex;gap:24px;margin-top:25px;font-size:14px}.resume-school{margin-top:12px;color:var(--muted)}.resume-download{display:inline-block;margin-top:22px;border-bottom:1px solid var(--line)}.resume-head img{width:144px;height:192px;object-fit:cover;border-radius:3px}.resume-summary{padding:32px 0;font-size:16px;line-height:1.95;max-width:850px}.resume-tags{font-size:11px;color:var(--accent);margin-bottom:16px;letter-spacing:1px}.resume-section{border-top:1px solid var(--line);padding:30px 0 36px}.resume-section h2{font-size:24px;margin-bottom:24px}.resume-section h3{font-size:17px;margin-top:28px;margin-bottom:10px;font-weight:600}.resume-section p{font-size:14px;line-height:1.95;max-width:830px;margin-top:12px;color:var(--muted)}.resume-section .resume-meta{font-size:12px;color:var(--accent);letter-spacing:.3px}
+@media(max-width:680px){.nav-inner{height:auto;min-height:88px;flex-wrap:wrap;padding-block:16px;gap:16px}.brand span{display:inline;font-size:9px;letter-spacing:0}.brand{gap:12px;font-size:17px}header nav{display:flex;order:3;width:100%;justify-content:space-between;gap:12px}nav a{font-size:12px}.resume{padding-top:35px}.resume-head{gap:16px;padding:28px 0}.resume-head h1{font-size:36px}.resume-role{font-size:15px}.resume-role span{display:block;margin:6px 0 0;font-size:10px}.resume-head img{width:90px;height:120px}.resume-contact{flex-direction:column;gap:5px;font-size:12px;margin-top:18px}.resume-school{font-size:11px}.resume-summary{font-size:14px}.resume-section h2{font-size:21px}.resume-section h3{font-size:16px}}
+
+.beta-badge{display:inline-block;vertical-align:middle;font-size:9px;font-weight:500;letter-spacing:.3px;line-height:1.5;padding:2px 7px;margin-left:5px;border:1px solid color-mix(in srgb,var(--accent) 25%,transparent);border-radius:4px;color:var(--accent);background:color-mix(in srgb,var(--accent) 5%,transparent)}
+
+.signal-art{top:100px;height:365px;width:47%}.signal-art canvas{display:block;width:100%;height:100%}.signal-caption{margin-top:-12px;position:relative}.signal-art{color:var(--accent)}
+@media(max-width:900px){.signal-art{top:105px;width:44%;height:300px}}
+@media(max-width:680px){.signal-art{top:auto;width:100%;height:240px;margin:8px auto 22px}.signal-art canvas{height:240px}.signal-caption{margin-top:-10px}}
+/* Spatial dust spans the cover; text and controls retain their own foreground. */
+.hero .signal-art{inset:62px 0 auto;width:100%;height:510px;pointer-events:none;z-index:0}
+.hero .eyebrow,.hero .hero-stats{position:relative;z-index:1}
+.hero .signal-caption{position:absolute;right:42px;bottom:52px;width:40%;padding:0;margin:0;opacity:.5}
+@media(max-width:900px) and (min-width:681px){.hero .signal-art{height:450px}.hero .signal-caption{bottom:48px;right:32px;font-size:5px}}
+@media(max-width:680px){.hero .signal-art{position:relative;inset:auto;width:100%;height:265px;margin:8px auto 22px}.hero .signal-art canvas{height:265px}.hero .signal-caption{right:0;bottom:0;width:100%;max-width:none;padding:0 12px;font-size:6px}}
+
+@media(min-width:681px){.hero .signal-caption{bottom:100px}}
+
+/* Continuous folded surface: a quiet sculptural counterweight to the typography. */
+.hero .signal-art{inset:78px 14px auto auto;width:45%;height:400px;pointer-events:none}
+.hero .signal-art canvas{width:100%;height:100%}
+.hero .signal-caption{right:30px;bottom:0;width:calc(100% - 60px);font-size:7px;letter-spacing:1.3px;opacity:.6}
+@media(min-width:681px) and (max-width:900px){.hero .signal-art{top:98px;right:10px;width:44%;height:310px}.hero .signal-caption{font-size:5px;right:15px;width:calc(100% - 30px)}}
+@media(max-width:680px){.hero .signal-art{position:relative;inset:auto;width:100%;height:265px;margin:10px auto 28px}.hero .signal-art canvas{height:265px}.hero .signal-caption{right:18px;bottom:0;width:calc(100% - 36px);font-size:6px}}
+
+.hero:before{opacity:.09}.hero .signal-caption{bottom:10px}
+
+.hero .signal-art{inset:58px -6px auto auto;width:49%;height:438px}.hero .signal-caption{right:40px;bottom:0;width:calc(100% - 80px);opacity:.65}.hero:before{display:none}
+@media(min-width:681px) and (max-width:900px){.hero .signal-art{top:90px;right:0;width:47%;height:340px}.hero .signal-caption{font-size:5px;right:20px;width:calc(100% - 40px)}}
+@media(max-width:680px){.hero .signal-art{position:relative;inset:auto;width:100%;height:300px;margin:0 auto 24px}.hero .signal-art canvas{height:300px}.hero .signal-caption{bottom:0;right:15px;width:calc(100% - 30px)}}
+/* Resume: a narrower reading measure brings the portrait closer to identity. */
+.resume{max-width:980px}.resume-head{display:grid;grid-template-columns:minmax(0,1fr) 144px;gap:36px}.resume-head img{justify-self:end}
+@media(max-width:680px){.resume{padding-inline:28px}.resume-head{grid-template-columns:minmax(0,1fr) 90px;gap:16px}.resume-contact a{overflow-wrap:anywhere}.resume-role span{margin-left:0}}
+
+/* AXON: a contained interactive particle space; document scrolling stays native. */
+.hero.wrap{max-width:none;padding-inline:max(48px,calc((100% - 1152px)/2));background:#08090d;--ink:#f0f0f4;--muted:#9798a4;--line:#2a2b35;--accent:#c5b7e8;--green:#a0b4a8;color:var(--ink);overflow:hidden}
+.hero h1{font-weight:650}.hero h1 .hero-line.quiet{color:#a8a6b4}.hero .eyebrow{color:#8e8c99}.hero .signal-art{inset:0 0 auto auto;width:64%;height:570px;pointer-events:none;mask-image:linear-gradient(to right,transparent,#000 13%);z-index:0}.hero .signal-art canvas{width:100%;height:100%}.hero .signal-caption{right:40px;bottom:34px;width:54%;color:#8f8a9f;font-size:7px;opacity:.7;letter-spacing:1.3px}.hero-bottom,.hero-stats{position:relative;z-index:1}.hero .hero-cta{color:#e5e1eb}.hero-stats{margin-top:56px}.hero-intro{color:#aaa6b3}
+@media(min-width:681px) and (max-width:1000px){.hero.wrap{padding-inline:32px}.hero .signal-art{width:64%;height:480px}.hero .signal-caption{right:32px;bottom:34px;font-size:6px}}
+@media(max-width:680px){.hero.wrap{padding-inline:28px}.hero .signal-art{position:relative;inset:auto;width:calc(100% + 56px);margin:0 -28px 16px;height:340px;mask-image:linear-gradient(to bottom,transparent,#000 10%,#000 90%,transparent)}.hero .signal-art canvas{height:340px}.hero .signal-caption{right:28px;width:calc(100% - 56px);bottom:4px;font-size:6px}.hero h1{position:relative;z-index:1}.hero-bottom{margin-top:20px}}
+
+.hero .signal-art .signal-order{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}.hero .signal-art canvas{position:relative;z-index:0}.hero .signal-caption{bottom:34px;right:48px;width:56%;color:#9c9fab}.hero.wrap{--accent:#8ca4ff}.hero .signal-art{mask-image:linear-gradient(to right,transparent,#000 20%)}
+@media(max-width:680px){.hero .signal-art{mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent)}.hero .signal-caption{bottom:0;right:28px;width:calc(100% - 56px)}}
+/* The same particle space supports the shared day/night palette. */
+html[data-theme=light] .hero.wrap{background:#f2f3f6;--ink:#1a1e26;--muted:#747a88;--line:#d9dce4;--accent:#345ee8;--green:#617c70;color:var(--ink)}
+html[data-theme=light] .hero h1 .hero-line.quiet{color:#737987}html[data-theme=light] .hero .hero-intro{color:#737987}html[data-theme=light] .hero .eyebrow,html[data-theme=light] .hero .signal-caption{color:#7a8191}html[data-theme=light] .hero .hero-cta{color:#303847}html[data-theme=light] .hero .signal-order g[stroke]{stroke:#5c6780}html[data-theme=light] .hero .signal-order g[fill="#8e93a3"]{fill:#68738a}
+
+.hero.wrap{touch-action:pan-y pinch-zoom}
+@media(max-width:680px){}
+
+/* Continuous planetary corona and accretion field. */
+.hero .signal-art{width:100%;mask-image:linear-gradient(to right,transparent,#000 30%)}
+.hero .signal-order{left:36%;width:64%}
+.hero .signal-corona{position:absolute;left:68%;top:50%;width:440px;height:440px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,transparent 48%,rgba(143,170,255,.025) 57%,rgba(171,193,255,.18) 64%,rgba(125,155,255,.06) 69%,transparent 77%);filter:blur(9px);opacity:.9}
+.hero .signal-pointer-glow{position:absolute;inset:0;background:radial-gradient(circle 110px at var(--pointer-x,68%) var(--pointer-y,50%),rgba(138,170,255,.24),transparent);opacity:var(--pointer-glow,0);mix-blend-mode:screen}
+html[data-theme="light"] .hero .signal-corona{background:radial-gradient(circle,transparent 48%,rgba(89,120,193,.03) 57%,rgba(81,112,186,.18) 64%,rgba(100,130,200,.07) 69%,transparent 77%)}
+@media(max-width:680px){.hero .signal-art{width:calc(100% + 56px);mask-image:linear-gradient(transparent,#000 12%,#000 85%,transparent)}.hero .signal-order{left:0;width:100%}.hero .signal-corona{left:50%;width:265px;height:265px}}
+
+/* Uneven nebular light replaces the geometrical corona ring. */
+.hero .signal-corona{width:650px;height:470px;border-radius:0;background:radial-gradient(ellipse at 67% 28%,#7b89d21b,transparent 35%),radial-gradient(ellipse at 25% 65%,#9e81ca16,transparent 37%),radial-gradient(ellipse at 58% 64%,#b2bfe014,transparent 43%);filter:blur(24px);transform:translate(-50%,-50%) rotate(-24deg)}
+html[data-theme="light"] .hero .signal-corona{background:radial-gradient(ellipse at 67% 28%,#5b6da522,transparent 35%),radial-gradient(ellipse at 25% 65%,#8b719b16,transparent 37%)}
+@media(max-width:680px){.hero .signal-corona{width:390px;height:290px;filter:blur(18px)}}
+
+/* Isolated planet and three rings: remove the wide galactic nebula. */
+.hero .signal-corona{display:none}
+/* Independent vector magnetic connections; orbit geometry never follows the pointer. */
+.hero .signal-arcs{position:absolute;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;overflow:visible;opacity:0;filter:drop-shadow(0 0 3px #5e9eff) drop-shadow(0 0 8px #447dff)}
+.hero .signal-arcs path{fill:none;stroke:#d1e6ff;stroke-width:1;stroke-linecap:round;stroke-linejoin:round}
+.hero .signal-arcs path:nth-child(2){stroke:#8ab8ff;stroke-width:.8}
+.hero .signal-arcs path:nth-child(3){stroke:#f4f6ff;stroke-width:.65}
+html[data-theme="light"] .hero .signal-arcs{filter:drop-shadow(0 0 4px #497deb88)}
+html[data-theme="light"] .hero .signal-arcs path{stroke:#315fa9}
+
+/* Near/far ring scale remains within a clipped, non-scrolling hero. */
+.hero .signal-arcs{filter:blur(.65px) drop-shadow(0 0 3px #528bdf66)}
+.hero .signal-arcs path{stroke-opacity:.34;stroke-width:.65}
+.hero .signal-arcs path:nth-child(2){stroke-width:.5;stroke-opacity:.28}
+.hero .signal-arcs path:nth-child(3){stroke-width:.45;stroke-opacity:.25}
+html[data-theme="light"] .hero .signal-arcs{filter:blur(.55px) drop-shadow(0 0 2px #497deb44)}
+@media(min-width:681px){.hero .signal-art{mask-image:linear-gradient(to right,transparent 32%,#000 52%)}}
+.hero .signal-internal-arcs{filter:blur(.45px) drop-shadow(0 0 3px #8faacc55)}
+.hero .signal-internal-arcs path{stroke:#c6dcf1;stroke-width:.8;stroke-opacity:.48}
+html[data-theme="light"] .hero .signal-internal-arcs path{stroke:#345474;stroke-opacity:.65}
